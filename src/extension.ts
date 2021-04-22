@@ -23,8 +23,8 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 
 		let text = doc.getText(cur_selection); // selected text
-		text = text.replace(/\t/g, `\t`);
-		text = text.replace(/"/g, `\\"`);
+		text = text.replace(/\\/g, "\\\\");
+		text = text.replace(/\t/g, `\\t`);
 		console.log(text);
 		let textSplitted = text.split(/\r?\n/);
 
