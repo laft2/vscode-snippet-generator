@@ -1,6 +1,7 @@
 {
   "name": "snippet-gen",
   "displayName": "snippet-gen",
+  "publisher": "laft2",
   "description": "Generate formatted text for VSCode snippet registration.",
   "version": "0.0.1",
   "engines": {
