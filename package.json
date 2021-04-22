@@ -1,7 +1,7 @@
 {
   "name": "snippet-gen",
   "displayName": "snippet-gen",
-  "description": "create vscode snippet text",
+  "description": "Generate formatted text for VSCode snippet registration.",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.55.0"
@@ -10,14 +10,14 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:snippet-gen.helloWorld"
+    "onCommand:snippet-gen.createText"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "snippet-gen.helloWorld",
-        "title": "Hello World"
+        "command": "snippet-gen.createText",
+        "title": "generate snippet text"
       }
     ]
   },
