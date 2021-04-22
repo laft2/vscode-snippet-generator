@@ -5,32 +5,24 @@ import * as vscode from 'vscode';
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "snippet-gen" is now active!');
-
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
 	let disposable = vscode.commands.registerCommand('snippet-gen.createText', () => {
 		// The code you place here will be executed every time your command is executed
 
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from snippet-gen!');
-
-		let editor = vscode.window.activeTextEditor; // エディタ取得
+		let editor = vscode.window.activeTextEditor;
 		if(editor == undefined) return;
-		let doc = editor.document;            // ドキュメント取得
-		let cur_selection = editor.selection; // 選択範囲取得
+		let doc = editor.document;
+		let cur_selection = editor.selection;
 		if(editor.selection.isEmpty){         
-					// 選択範囲が空であれば全てを選択範囲にする
+					// if selection is empty, selection is all of text.
 					let startPos = new vscode.Position(0, 0);
 					let endPos = new vscode.Position(doc.lineCount - 1, 10000);
 					cur_selection = new vscode.Selection(startPos, endPos);
 		}
 
-		let text = doc.getText(cur_selection); //取得されたテキスト
+		let text = doc.getText(cur_selection); // selected text
 		text = text.replace(/\t/, `\t`);
 		console.log(text);
 		let textSplitted = text.split(/\r?\n/);
@@ -52,7 +44,7 @@ export function activate(context: vscode.ExtensionContext) {
 		let result = LF + header + body.reduce((sum, elm) => sum + elm, "") + footer;
 		console.log(result);
 
-		//エディタ選択範囲にテキストを反映
+		// insert snippet text
 		editor.edit(edit => {
 			edit.insert(cur_selection.end, result)
 		});
